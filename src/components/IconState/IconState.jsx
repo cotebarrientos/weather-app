@@ -7,16 +7,16 @@ import { WiCloud,
     WiRain } from 'react-icons/wi'
 
 export const validValues = [
-    'cloud',
-    'cloudy',
-    'fog',
-    'sunny',
-    'rain'
-]
+        "cloud",
+        "cloudy",
+        "fog",
+        "sunny",
+        "rain",
+    ]
 
 const stateByName = {
     cloud: WiCloud,
-    Cloudy: WiDayCloudy,
+    cloudy: WiDayCloudy,
     fog: WiDayFog,
     sunny: WiDaySunny,
     rain: WiRain,
@@ -34,4 +34,3 @@ IconState.propTypes = {
 }
 
 export default IconState
-

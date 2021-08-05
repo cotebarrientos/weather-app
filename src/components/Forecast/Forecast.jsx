@@ -6,33 +6,33 @@ import { validValues } from './../IconState'
 
 const renderForecastItem = forecast => {
     const { weekDay, hour, state, temperature } = forecast
-    // Hay que poner un identificador unico
+    // Hay que poner un identificador único
     return (
         <Grid item key={`${weekDay}${hour}`}>
             <ForecastItem 
                 hour={hour}
                 weekDay={weekDay}
                 state={state}
-                temperature={temperature}>
-            </ForecastItem>
+                temperature={temperature}
+            ></ForecastItem>
         </Grid>
     )
 }
 
-const Forecast = ({ForecastItemList}) => {
+const Forecast = ({ forecastItemList }) => {
     return (
         <Grid container
-        justifyContent='center'
-        alignItems='center'>
+            justify="center"
+            alignItems="center">
             {
-               ForecastItemList.map(forecast => renderForecastItem(forecast)) 
+                forecastItemList.map(forecast => renderForecastItem(forecast))
             }
         </Grid>
     )
 }
 
-// forecastItemList es un array de ELEMENTOS    
-// los elementos deben tener una 'forma' en particular
+// forecastItemList es un array de elementos
+// los elementos deben tener una "forma" en particular
 // las siguientes propiedades:
 /*
     weekDay: PropTypes.string.isRequired,
@@ -41,12 +41,12 @@ const Forecast = ({ForecastItemList}) => {
     temperature: PropTypes.number.isRequired,
 */
 Forecast.propTypes = {
-    ForecastItemList: PropTypes.shape({
+    forecastItemList: PropTypes.shape({
         weekDay: PropTypes.string.isRequired,
         hour: PropTypes.number.isRequired,
         state: PropTypes.oneOf(validValues).isRequired,
-        temperature: PropTypes.number.isRequired,
-    }).isRequired
+        temperature: PropTypes.number.isRequired,        
+    }).isRequired,
 }
 
 export default Forecast
