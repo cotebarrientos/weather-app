@@ -5,14 +5,14 @@ import Grid from '@material-ui/core/Grid'
 import { IconContext } from 'react-icons'
 import IconState, { validValues } from './../IconState'
 
-const ForecastItem = ({ weekday, hour, state, temperature}) => {
+const ForecastItem = ({ weekDay, hour, state, temperature}) => {
     return (
         <Grid container
             direction='column'
             justifyContent='center'
             alignItems='center'>
                 <Grid item>
-                    <Typography>{ weekday }</Typography>
+                    <Typography>{ weekDay }</Typography>
                 </Grid>
                 <Grid item>
                     <Typography>{ hour }</Typography>
@@ -30,7 +30,7 @@ const ForecastItem = ({ weekday, hour, state, temperature}) => {
 }
 
 ForecastItem.propTypes = {
-    weekday: PropTypes.string.isRequired,
+    weekDay: PropTypes.string.isRequired,
     hour: PropTypes.number.isRequired,
     state: PropTypes.oneOf(validValues).isRequired,
     temperature: PropTypes.number.isRequired,
