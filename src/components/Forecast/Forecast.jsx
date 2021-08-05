@@ -8,7 +8,9 @@ const renderForecastItem = forecast => {
     const { weekDay, hour, state, temperature } = forecast
     // Hay que poner un identificador único
     return (
-        <Grid item key={`${weekDay}${hour}`}>
+        <Grid 
+        data-testid="forecast-item-container"
+            item key={`${weekDay}${hour}`}>
             <ForecastItem 
                 hour={hour}
                 weekDay={weekDay}
@@ -22,7 +24,7 @@ const renderForecastItem = forecast => {
 const Forecast = ({ forecastItemList }) => {
     return (
         <Grid container
-            justify="center"
+            justifyContent="center"
             alignItems="center">
             {
                 forecastItemList.map(forecast => renderForecastItem(forecast))
