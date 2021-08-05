@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid'
 import CityInfo from './../CityInfo'
 import Weather from './../Weather'
+import { validValues } from './../IconState'
 
 // renderCityAndCountry se va a convertir en una función que retorna otra función
 const renderCityAndCountry = eventOnClickCity => cityAndCountry => {
@@ -41,7 +42,12 @@ const CityList = ({ cities, onClickCity }) => {
 }
 
 CityList.propTypes = {
-    cities: PropTypes.array.isRequired,
+    cities: PropTypes.shape({
+        city: PropTypes.string.isRequired,
+        country: PropTypes.string.isRequired,
+        temperature: PropTypes.number.isRequired,
+        state: PropTypes.oneOf(validValues).isRequired,
+    }).isRequired,
     onClickCity: PropTypes.func.isRequired,
 }
 
