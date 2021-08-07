@@ -1,8 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router, 
     Switch,
-    Route,
-    Link } from 'react-router-dom'
+    Route } from 'react-router-dom'
+import WelcomePage from './pages/WelcomePage'
+import MainPage from './pages/MainPage'
+import CityPage from './pages/CityPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 const App = () => {
     return (
@@ -11,26 +14,16 @@ const App = () => {
             <Router>
                 <Switch>
                     <Route exact path='/'>
-                        Welcome
-                        <div>
-                            <Link to='/main'>Go to Main</Link>
-                        </div>
+                        <WelcomePage />
                     </Route>
                     <Route path='/main'>
-                        Main
-
+                        <MainPage />
                     </Route>
                     <Route path='/city'>
-                        City
-                        <div>
-                            <Link to='/main'>Back to Main</Link>
-                        </div>
+                        <CityPage />
                     </Route>
                     <Route>
-                        Not Found
-                        <div>
-                            <Link to='/main'>Back to Main</Link>
-                        </div>
+                        <NotFoundPage />
                     </Route>
                 </Switch>
             </Router>
