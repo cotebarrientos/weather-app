@@ -13,8 +13,11 @@ const App = () => {
         <Grid container
             justifyContent='center'
             direction='row'>
-            <Grid sm={10}>
-                <h1>My App</h1>
+            <Grid 
+                xs={12}
+                sm={11}
+                md={10}
+                lg={8}>
                 <Router>
                     <Switch>
                         <Route exact path='/'>
