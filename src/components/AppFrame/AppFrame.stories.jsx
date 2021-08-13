@@ -9,6 +9,8 @@ export default {
 
 export const AppFrameExample = () => (
     <Router>
-        <AppFrame />
+        <AppFrame>
+            My beautiful App
+        </AppFrame>
     </Router>
 )
