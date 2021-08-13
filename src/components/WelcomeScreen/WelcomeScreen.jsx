@@ -27,8 +27,8 @@ const WelcomeScreen = ({children}) => {
     },[vanta])
 
     return (
-        <div ref={myRefDiv}>
-            Welcome Screen
+        <div className='full' ref={myRefDiv}>
+            {children}
         </div>
     )
 }

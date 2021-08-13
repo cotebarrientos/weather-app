@@ -1,14 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import WelcomeScreen from './../components/WelcomeScreen'
 
 const WelcomePage = () => {
     return (
-        <div>
-            Welcome to Weather App
-            <div>
-                <Link to='/main'>Go to Main</Link>
-            </div>
-        </div>
+        <WelcomeScreen>
+
+        </WelcomeScreen>
     )
 }
 
