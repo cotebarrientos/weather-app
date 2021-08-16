@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import axios from 'axios'
 import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import CityInfo from './../CityInfo'
 import Weather from './../Weather'
-import { validValues } from './../IconState'
 
 // renderCityAndCountry se va a convertir en una función que retorna otra función
-const renderCityAndCountry = eventOnClickCity => cityAndCountry => {
+const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
     const { city, country } = cityAndCountry
+    // const { temperature, state } = weather
 
     return (
         <ListItem
@@ -28,7 +29,14 @@ const renderCityAndCountry = eventOnClickCity => cityAndCountry => {
                 <Grid item
                     md={3}
                     xs={12}>
-                        <Weather temperature={10} state='sunny' />
+                    {
+                        weather ? 
+                        (<Weather 
+                        temperature={weather.temperature} 
+                        state={weather.state} />) 
+                        : 
+                        ("No data available")
+                    }
                 </Grid>
             </Grid>
         </ListItem>
@@ -37,22 +45,55 @@ const renderCityAndCountry = eventOnClickCity => cityAndCountry => {
 
 // Cities: es un array, y en cada item tiene que tener la ciudad y el pais
 const CityList = ({ cities, onClickCity }) => {
+    const [allWeather, setAllWeather] = useState({})
+
+    useEffect(() => {
+        const setWeather = (city, country, countryCode) => {
+            const apiKey = process.env.REACT_APP_WEATHER_API_KEY
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${apiKey}`; 
+            axios
+            .get(url)
+            .then(response => {
+                const { data } = response
+                const temperature = data.main.temp
+                const state = 'sunny'
+                const propName = `${city}-${country}`
+                const propValue = { temperature, state }
+
+                console.log('propName', propName)
+                
+                setAllWeather(allWeather => {
+                    const result = { ...allWeather, [propName]: propValue }
+                    console.log('allWeather [result]', result)
+                    return result
+                })
+            })
+        }
+        
+        cities.forEach(({ city, country, countryCode }) => {
+            setWeather(city, country, countryCode)
+        });
+
+    }, [cities])
+
     return (
         <List>
             {
-                cities.map(cityAndCountry => renderCityAndCountry(onClickCity)(cityAndCountry))
+                cities.map(cityAndCountry => renderCityAndCountry(onClickCity)(cityAndCountry, 
+                    allWeather[`${cityAndCountry.city}-${cityAndCountry.country}`]))
             }
         </List>
     )
 }
 
 CityList.propTypes = {
-    cities: PropTypes.shape({
-        city: PropTypes.string.isRequired,
-        country: PropTypes.string.isRequired,
-        temperature: PropTypes.number.isRequired,
-        state: PropTypes.oneOf(validValues).isRequired,
-    }).isRequired,
+    cities: PropTypes.arrayOf(
+        PropTypes.shape({
+            city: PropTypes.string.isRequired,
+            country: PropTypes.string.isRequired,
+            countryCode: PropTypes.string.isRequired,
+        })
+    ).isRequired,
     onClickCity: PropTypes.func.isRequired,
 }
 
