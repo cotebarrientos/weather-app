@@ -3,14 +3,14 @@ import { render, fireEvent } from '@testing-library/react'
 import CityList from './CityList' //SUT
 
 const cities = [
-    {city:"Dublin", country:"Ireland"},
-    {city:"Buenos Aires", country:"Argentina"},
-    {city:"Santiago de Chile", country:"Chile"},
-    {city:"Madrid", country:"España"},
+    {city:"Dublin", country:" Ireland", countryCode:"IE"},
+    {city:"Buenos Aires", country:" Argentina", countryCode:"AR"},
+    {city:"Santiago de Chile", country:" Chile", countryCode:"CL"},
+    {city:"Madrid", country:" Spain", countryCode:"ES"},
 ]
 
 test("CityList renders", async () => {
-    const { findAllByRole } = render(<CityList cities={cities} />)
+    const { findAllByRole } = render(<CityList cities={cities} onClickCity={() => {}} />)
 
     const items = await findAllByRole('button')
 

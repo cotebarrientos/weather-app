@@ -10,7 +10,6 @@ import Weather from './../Weather'
 // renderCityAndCountry se va a convertir en una función que retorna otra función
 const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
     const { city, country } = cityAndCountry
-    // const { temperature, state } = weather
 
     return (
         <ListItem
@@ -56,7 +55,7 @@ const CityList = ({ cities, onClickCity }) => {
             .then(response => {
                 const { data } = response
                 const temperature = data.main.temp
-                const state = 'sunny'
+                const state = 'clear'
                 const propName = `${city}-${country}`
                 const propValue = { temperature, state }
 

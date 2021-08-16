@@ -5,7 +5,7 @@ import ForecastItemStories from './ForecastItem.stories'
 
 
 test('ForecastItem render', async  () => {
-    const { findByText } = render(<ForecastItem hour={10} state='sunny' temperature={23} weekDay='Lunes' />)
+    const { findByText } = render(<ForecastItem hour={10} state='clear' temperature={23} weekDay='Lunes' />)
 
     const hour = await findByText(/10/)
 
