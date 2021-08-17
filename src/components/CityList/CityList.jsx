@@ -9,14 +9,16 @@ import ListItem from '@material-ui/core/ListItem'
 import CityInfo from './../CityInfo'
 import Weather from './../Weather'
 
+const getCityCode = (city, countryCode) => `${city}-${countryCode}`
+
 // renderCityAndCountry se va a convertir en una función que retorna otra función
 const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
-    const { city, country } = cityAndCountry
+    const { city, countryCode, country } = cityAndCountry
 
     return (
         <ListItem
             button 
-            key={city} 
+            key={getCityCode(city, countryCode)} 
             onClick={eventOnClickCity}>
             <Grid container
                 justifyContent='center'
@@ -45,42 +47,34 @@ const CityList = ({ cities, onClickCity }) => {
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        const setWeather = (city, country, countryCode) => {
+        const setWeather = async (city, countryCode) => {
             const apiKey = process.env.REACT_APP_WEATHER_API_KEY
-            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${apiKey}`; 
-            axios
-            .get(url)
-            .then(response => {
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${countryCode}&appid=${apiKey}`;
+            
+            try {
+                const response = await axios.get(url)
+
                 const { data } = response
                 const temperature = Number(convertUnits(data.main.temp).from('K').to('C').toFixed(0))
                 const state =  data.weather[0].main.toLowerCase()
-                console.log(state)
-                const propName = `${city}-${country}`
+               
+                const propName = getCityCode(city, countryCode)
                 const propValue = { temperature, state }
-
-                console.log('propName', propName)
-                console.log('propValue', propValue)
                 
                 setAllWeather(allWeather => ({ ...allWeather, [propName]: propValue }))
-            })
-            .catch(error => {
+            } catch (error) {
                 if (error.response) {
-                    const { data, status } = error.response
-                    console.log('data', data)
-                    console.log('status', status)
                     setError('Sorry, a server error has occurred, please try again later.')
                 } else if (error.request) {
-                    console.log('Sorry, server not reachable or no internet connection')
                     setError('Sorry, server not reachable, please check your internet connection.')
                 } else {
-                    console.log('Sorry, unexpected errors :(')
                     setError('Sorry, error loading data, please try again later.')
                 }  
-            })
+            }
         }
         
-        cities.forEach(({ city, country, countryCode }) => {
-            setWeather(city, country, countryCode)
+        cities.forEach(({ city, countryCode }) => {
+            setWeather(city, countryCode)
         });
 
     }, [cities])
@@ -93,7 +87,7 @@ const CityList = ({ cities, onClickCity }) => {
             <List>
                 {
                     cities.map(cityAndCountry => renderCityAndCountry(onClickCity)(cityAndCountry, 
-                        allWeather[`${cityAndCountry.city}-${cityAndCountry.country}`]))
+                        allWeather[getCityCode(cityAndCountry.city, cityAndCountry.countryCode)]))
                 }
             </List>
         </div>
