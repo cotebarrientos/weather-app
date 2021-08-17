@@ -55,17 +55,15 @@ const CityList = ({ cities, onClickCity }) => {
             .then(response => {
                 const { data } = response
                 const temperature = data.main.temp
-                const state = 'clear'
+                const state =  data.weather[0].main.toLowerCase()
+                console.log(state)
                 const propName = `${city}-${country}`
                 const propValue = { temperature, state }
 
                 console.log('propName', propName)
+                console.log('propValue', propValue)
                 
-                setAllWeather(allWeather => {
-                    const result = { ...allWeather, [propName]: propValue }
-                    console.log('allWeather [result]', result)
-                    return result
-                })
+                setAllWeather(allWeather => ({ ...allWeather, [propName]: propValue }))
             })
         }
         
