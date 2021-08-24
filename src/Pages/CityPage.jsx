@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import convertUnits from 'convert-units'
 import Grid from '@material-ui/core/Grid'
 import moment from 'moment'
 import { useParams } from 'react-router-dom'
@@ -69,12 +70,24 @@ const CityPage = () => {
 
                 const daysAhead = [0, 1, 2, 3, 4, 5]
                 const days = daysAhead.map(d => moment().add(d, 'd'))
-                const dataAux = days.map(d => {
+                const dataAux = days.map(day => {
+
+                    const tempObjArray = data.list.filter(item => {
+                        const dayOfYear = moment.unix(item.dt).dayOfYear()
+                        return dayOfYear === day.dayOfYear()
+                    })
+
+                    console.log('day.dayOfYear()', day.dayOfYear())
+                    console.log('tempObjArray', tempObjArray)
+
+                    const temps = tempObjArray.map(item => item.main.temp)
+
+                    const toCelsius = (temp) => Number(convertUnits(temp).from('K').to('C').toFixed(0))
                     // dayHour, min, max.
                     return ({
-                        dayHour: d.format('ddd'),
-                        min: 10,
-                        max: 30
+                        dayHour: day.format('ddd'),
+                        min: toCelsius(Math.min(...temps)),
+                        max: toCelsius(Math.max(...temps))
                     })
                 })
 
