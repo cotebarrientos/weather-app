@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import Grid from '@material-ui/core/Grid'
+import { useParams } from 'react-router-dom'
 import AppFrame from './../components/AppFrame'
 import CityInfo from './../components/CityInfo'
 import Weather from './../components/Weather'
@@ -41,28 +43,53 @@ const dataExample = [
 ]
 
 const forecastItemListExample = [
-	{ hour: 18, state:"sunny", temperature:17, weekDay:"Thursday" },
-	{ hour: 6, state:"cloud", temperature:18, weekDay:"Friday" },
+	{ hour: 18, state:"clear", temperature:17, weekDay:"Thursday" },
+	{ hour: 6, state:"clouds", temperature:18, weekDay:"Friday" },
 	{ hour: 12, state:"fog", temperature:18, weekDay:"Friday" },
-	{ hour: 18, state:"cloudy", temperature:19, weekDay:"Friday" },
+	{ hour: 18, state:"clouds", temperature:19, weekDay:"Friday" },
 	{ hour: 6, state:"rain", temperature:17, weekDay:"Saturday" },
 	{ hour: 12, state:"rain", temperature:17, weekDay:"Saturday" },
 ] 
 
 const CityPage = () => {
-    const city = "Buenos Aires"
+    const [data, setData] = useState(null)
+    const [forecastItemList, setForecastItemList] = useState(null)
+
+    const { city, countryCode } = useParams()
+   
+    useEffect(() => {
+        const getForecats = async () => {
+            const apiKey = process.env.REACT_APP_WEATHER_API_KEY
+            const url = `https://api.openweathermap.org/data/2.5/forecast?q=${city},${countryCode}&&appid=${apiKey}`
+
+            try {
+                const { data } = await axios.get(url)
+                console.log('data', data)
+
+                setData(dataExample)
+                setForecastItemList(forecastItemListExample)
+
+            } catch (error) {
+            console.log(error)        
+            }
+        }
+        
+        getForecats()
+
+    }, [city, countryCode])
+
     const country = "Argentina"
-    const state = "cloudy"
+    const state = "clouds"
     const temperature = 20
     const humidity = 80
     const wind = 5
-    const data = dataExample
-    const forecastItemList = forecastItemListExample
+    // const data = dataExample
+    // const forecastItemList = forecastItemListExample
 
     return (
         <AppFrame>
             <Grid container
-            justify="space-around"
+            justifyContent="space-around"
             direction="column"
             spacing={2}>
                 <Grid item container
@@ -78,10 +105,14 @@ const CityPage = () => {
                         wind={wind} />
                 </Grid>
                 <Grid item>
-                    <ForecastChart data={data} />
+                    {
+                       data && <ForecastChart data={data} />
+                    }
                 </Grid>
                 <Grid item>
-                    <Forecast forecastItemList={forecastItemList} />
+                    { 
+                        forecastItemList && <Forecast forecastItemList={forecastItemList} />
+                    }
                 </Grid>
             </Grid>        
         </AppFrame>

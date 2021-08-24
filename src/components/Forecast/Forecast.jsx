@@ -43,12 +43,14 @@ const Forecast = ({ forecastItemList }) => {
     temperature: PropTypes.number.isRequired,
 */
 Forecast.propTypes = {
-    forecastItemList: PropTypes.shape({
-        weekDay: PropTypes.string.isRequired,
-        hour: PropTypes.number.isRequired,
-        state: PropTypes.oneOf(validValues).isRequired,
-        temperature: PropTypes.number.isRequired,        
-    }).isRequired,
+    forecastItemList: PropTypes.arrayOf(
+        PropTypes.shape({
+            weekDay: PropTypes.string.isRequired,
+            hour: PropTypes.number.isRequired,
+            state: PropTypes.oneOf(validValues).isRequired,
+            temperature: PropTypes.number.isRequired,        
+        }),
+    ).isRequired,
 }
 
 export default Forecast
