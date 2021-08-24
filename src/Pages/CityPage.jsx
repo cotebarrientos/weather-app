@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Grid from '@material-ui/core/Grid'
+import moment from 'moment'
 import { useParams } from 'react-router-dom'
 import AppFrame from './../components/AppFrame'
 import CityInfo from './../components/CityInfo'
@@ -66,7 +67,18 @@ const CityPage = () => {
                 const { data } = await axios.get(url)
                 console.log('data', data)
 
-                setData(dataExample)
+                const daysAhead = [0, 1, 2, 3, 4, 5]
+                const days = daysAhead.map(d => moment().add(d, 'd'))
+                const dataAux = days.map(d => {
+                    // dayHour, min, max.
+                    return ({
+                        dayHour: d.format('ddd'),
+                        min: 10,
+                        max: 30
+                    })
+                })
+
+                setData(dataAux)
                 setForecastItemList(forecastItemListExample)
 
             } catch (error) {
