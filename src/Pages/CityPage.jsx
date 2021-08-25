@@ -53,8 +53,8 @@ const forecastItemListExample = [
 	{ hour: 12, state:"rain", temperature:17, weekDay:"Saturday" },
 ] 
 
-const CityPage = () => {
-    const [data, setData] = useState(null)
+const useCityPage = () => {
+    const [chartData, setChartData] = useState(null)
     const [forecastItemList, setForecastItemList] = useState(null)
 
     const { city, countryCode } = useParams()
@@ -87,11 +87,12 @@ const CityPage = () => {
                     return ({
                         dayHour: day.format('ddd'),
                         min: toCelsius(Math.min(...temps)),
-                        max: toCelsius(Math.max(...temps))
+                        max: toCelsius(Math.max(...temps)),
+                        hasTemps: (temps.length > 0 ? true : false)
                     })
-                })
+                }).filter(item => item.hasTemps)
 
-                setData(dataAux)
+                setChartData(dataAux)
 
                 const interval = [4, 8, 12, 16, 20, 24]
                 const forecastItemListAux = data.list
@@ -115,14 +116,19 @@ const CityPage = () => {
         getForecats()
 
     }, [city, countryCode])
+    
+    return { city, chartData, forecastItemList }
+}
 
+const CityPage = () => {
+
+    const { city, chartData, forecastItemList } = useCityPage()
+    
     const country = "Argentina"
     const state = "clouds"
     const temperature = 20
     const humidity = 80
     const wind = 5
-    // const data = dataExample
-    // const forecastItemList = forecastItemListExample
 
     return (
         <AppFrame>
@@ -144,7 +150,7 @@ const CityPage = () => {
                 </Grid>
                 <Grid item>
                     {
-                       data && <ForecastChart data={data} />
+                       chartData && <ForecastChart data={chartData} />
                     }
                 </Grid>
                 <Grid item>
