@@ -6,14 +6,12 @@ import getChartData from './../utils/transform/getChartData'
 import getForecastItemList from './../utils/transform/getForecastItemList'
 import { getCityCode } from './../utils/utils'
 
-const useCityPage = (onSetChartData, onSetForecastItemList) => {
-    // const [chartData, setChartData] = useState(null)
-    // const [forecastItemList, setForecastItemList] = useState(null)
+const useCityPage = (allChartData, allForecastItemList, onSetChartData, onSetForecastItemList) => {
 
     const { city, countryCode } = useParams()
    
     useEffect(() => {
-        const getForecats = async () => {
+        const getForecast = async () => {
             const url = getForecastUrl({ city, countryCode })
             const cityCode = getCityCode(city, countryCode)
             try {
@@ -31,10 +29,13 @@ const useCityPage = (onSetChartData, onSetForecastItemList) => {
             console.log(error)        
             }
         }
-        
-        getForecats()
+        const cityCode = getCityCode(city, countryCode)
 
-    }, [city, countryCode, onSetChartData, onSetForecastItemList])
+        if (allChartData && allForecastItemList && !allChartData[cityCode] && !allForecastItemList[cityCode]) {
+            getForecast()
+        }
+
+    }, [city, countryCode, onSetChartData, onSetForecastItemList, allChartData, allForecastItemList])
     
     return { city, countryCode }
 }
