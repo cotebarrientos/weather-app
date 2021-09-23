@@ -42,9 +42,9 @@ const renderCityAndCountry = eventOnClickCity => (cityAndCountry, weather) => {
 // Cities: es un array, y en cada item tiene que tener la ciudad y el pais
 const CityList = ({ cities, onClickCity,  actions, data }) => {
     const { allWeather } = data
-    const { onSetAllWeather } = actions
+    // const { onSetAllWeather } = actions
 
-    const { error, setError } = useCityList(cities, allWeather, onSetAllWeather)
+    const { error, setError } = useCityList(cities, allWeather, actions)
 
     return (
         <div>
