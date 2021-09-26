@@ -7,6 +7,7 @@ const cities = [
     {city:"Buenos Aires", country:" Argentina", countryCode:"AR"},
     {city:"Santiago de Chile", country:" Chile", countryCode:"CL"},
     {city:"Madrid", country:" Spain", countryCode:"ES"},
+    {city:"Naples", country:" Italy", countryCode:"IT"},
 ]
 
 test("CityList renders", async () => {
@@ -14,7 +15,7 @@ test("CityList renders", async () => {
 
     const items = await findAllByRole('button')
 
-    expect(items).toHaveLength(4)
+    expect(items).toHaveLength(5)
 })
 
 test('CityList click on item', async () => {
