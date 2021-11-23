@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import AppFrame from './../components/AppFrame'
@@ -36,6 +36,10 @@ const CityPage = () => {
     const temperature = weather && weather.temperature
     const humidity = weather && weather.humidity
     const wind = weather && weather.wind
+
+    useEffect(() => {
+        document.title = 'Weather App | Forecast'
+    }, [])
 
     return (
         <AppFrame>

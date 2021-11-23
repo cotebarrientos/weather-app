@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import AppFrame from './../components/AppFrame'
@@ -12,6 +12,11 @@ const MainPage = () => {
     const onClickHandler = React.useCallback((city,  countryCode) => {
         history.push(`/city/${countryCode}/${city}`)
     }, [history])
+    
+    useEffect(() => {
+        document.title = 'Weather App | Main'
+    }, [])
+
 
     return (
         <AppFrame>

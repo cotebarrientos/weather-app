@@ -45,7 +45,7 @@ const stateByName = {
 const IconState = ({ state }) => {
     const StateByName = stateByName[state]
     return (
-        <Box sx={{ color: deepOrange[500], pr: 2, pl: 2}}>
+        <Box sx={{ color: deepOrange[500], pr: 1, pl: 1}}>
             <StateByName />
         </Box>
     )
