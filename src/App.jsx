@@ -2,10 +2,10 @@ import React from 'react'
 import { BrowserRouter as Router, 
     Switch,
     Route } from 'react-router-dom'
-import CityPage from './pages/CityPage'
-import MainPage from './pages/MainPage'
-import NotFoundPage from './pages/NotFoundPage'
-import WelcomePage from './pages/WelcomePage'
+import CityPage from './Pages/CityPage'
+import MainPage from './Pages/MainPage'
+import NotFoundPage from './Pages/NotFoundPage'
+import WelcomePage from './Pages/WelcomePage'
 import { WeatherContext } from './WeatherContext'
 
 const App = () => {
