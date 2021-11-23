@@ -11,6 +11,8 @@ import { WiDayCloudy,
     WiFog,
     WiSmoke,
     WiDust } from 'react-icons/wi'
+import { deepOrange } from '@material-ui/core/colors'
+import Box from '@material-ui/core/Box'
 
 export const validValues = [
         "clouds",
@@ -24,7 +26,7 @@ export const validValues = [
         "mist",
         "smoke",
         "dust"
-    ]
+]
 
 const stateByName = {
     clouds: WiDayCloudy,
@@ -43,7 +45,9 @@ const stateByName = {
 const IconState = ({ state }) => {
     const StateByName = stateByName[state]
     return (
-        <StateByName />
+        <Box sx={{ color: deepOrange[500], pr: 2, pl: 2}}>
+            <StateByName />
+        </Box>
     )
 }
 

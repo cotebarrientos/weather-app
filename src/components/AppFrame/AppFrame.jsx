@@ -9,14 +9,22 @@ import { Link as LinkRouter } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
 import Toolbar from '@material-ui/core/Toolbar'
 import { WiDaySunny } from 'react-icons/wi'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyle = makeStyles({
+    appBarStyle: {
+        marginBottom: "3rem",
+    }
+})
 
 const AppFrame = ({ children }) => {
 
     const iconContextSize = useMemo(() => ({size:'2em'}), [])
+    const customClasses = useStyle()
     return (
         <Grid container
             justifyContent='center'>
-            <AppBar position='static'>
+            <AppBar position='static' className={customClasses.appBarStyle}>
                 <Toolbar variant='dense'>
                     <IconButton color='inherit' aria-label='menu'>
                         <Link 

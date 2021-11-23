@@ -24,7 +24,7 @@ const Weather = ({ temperature, state }) => {
             </IconContext.Provider>
             {
                 temperature ?
-                <Typography display='inline' variant='h3'>{temperature}</Typography>
+                <Typography display='inline' variant='h3'>{temperature}°C</Typography>
                 :
                 <Skeleton variant='rect' height={80} width={80}></Skeleton>
             }
