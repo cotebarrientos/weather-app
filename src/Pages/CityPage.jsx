@@ -1,5 +1,6 @@
 import React, { useMemo, useEffect } from 'react'
-import Grid from '@material-ui/core/Grid'
+import { BsFillArrowLeftCircleFill } from "react-icons/bs"
+import { Box, Button, Grid } from '@material-ui/core'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import AppFrame from './../components/AppFrame'
 import CityInfo from './../components/CityInfo'
@@ -77,6 +78,18 @@ const CityPage = () => {
                     { 
                         forecastItemList && <Forecast forecastItemList={forecastItemList} />
                     }
+                </Grid>
+                <Grid item container 
+                justifyContent='center'>
+                    <Box sx={{m: 3}}>
+                        <Button 
+                        variant="contained" 
+                        color="primary" 
+                        href="/main" 
+                        startIcon={<BsFillArrowLeftCircleFill />}>
+                            Go Back 
+                        </Button>
+                    </Box>
                 </Grid>
             </Grid>        
         </AppFrame>
