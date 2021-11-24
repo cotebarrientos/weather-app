@@ -68,32 +68,32 @@ For local deployment you must have an IDE, like for example **VS Code**
 
 **1.** In Heroku, create an app. The app must have a unique name.
 
-**2.** Link that app to the GitHub repository by going to the "Deploy" tab in the main app menu.
+**2.** Link that app to the GitHub repository by going to the **"Deploy"** tab in the main app menu.
 
-**3.** In the Settings tab, add the corresponding Configuration Variables which are the same that are present in the local development:
+**3.** In the **"Settings"** tab, add the corresponding Configuration Variables which are the same that are present in the local development:
 
     REACT_APP_WEATHER_API_KEY = 'your OpenWeather API key here'
 
-**4.** Then in the Settings tab, press the **Add buildpack** button and add the following link: `https://github.com/mars/create-react-app-buildpack`
+**4.** Then in the **"Settings"** tab, press the **Add buildpack** button and add the following link: `https://github.com/mars/create-react-app-buildpack`
 
-**5.** Go to the Deploy tab, and press the **Deploy Branch** button, wait until your app finish the process.
+**5.** Go to the **"Deploy"** tab, and press the **Deploy Branch** button, wait until your app finish the process.
 
 ## Credits
 
 ### Code
-Part of coding written for this project was based on the source code provided by [weather-app-2020](https://github.com/correooke/weather-app-2020), which is part of the specialization course called [React JS + Redux + ES6. Completo ¡De 0 a experto! (español)](https://www.udemy.com/course/react-js-redux-es6-completo-de-0-a-experto-espanol/). 
+Part of coding written for this project was based on the source code provided by **[weather-app-2020](https://github.com/correooke/weather-app-2020)**, which is part of the specialization course called **[React JS + Redux + ES6. Completo ¡De 0 a experto! (español)](https://www.udemy.com/course/react-js-redux-es6-completo-de-0-a-experto-espanol/)**. 
 
 The buildpack used for the heroku deployment, you can find it in the **[mars](https://github.com/mars/create-react-app-buildpack)** GitHub repository
 
 ### Media
-All images obtained for this project were consulted from [Iconfinder](https://www.iconfinder.com/).
+All images obtained for this project were consulted from **[Iconfinder](https://www.iconfinder.com/)**.
 
 ### Acknowledgements
 I would like to thank the following people who encouraged me to continue specializing in the IT area.
 - My boyfriend.
 - My family and friends
 
-I also want to thank the engineer [Emiliano Ocariz](https://github.com/correooke), for doing the specialization course about React and Redux, which was very practical when teaching and exposing everything, also part of the code used is of his authorship. 
+I also want to thank the engineer **[Emiliano Ocariz](https://github.com/correooke)**, for doing the specialization course about React and Redux, which was very practical when teaching and exposing everything, also part of the code used is of his authorship. 
 
 ---
 
