@@ -1,11 +1,30 @@
 # Weather App
+![main image](https://github.com/cotebarrientos/weather-app/blob/main/src/img/responsive_img.png?raw=true)
 
 **Weather-App** is my second project using react, and this App is able to give the weather forecast up to a week, and it is updated every hour thanks to the information provided by the [OpenWeather API](https://openweathermap.org/). 
 
 This project is part of the exercises performed in my specialization course about React JS and Redux on [Udemy](https://www.udemy.com/course/react-js-redux-es6-completo-de-0-a-experto-espanol/).
 
-**You can visit this project by clicking [here](https://weather-app-react-udemy.herokuapp.com/)**
+<img src="https://github.com/cotebarrientos/weather-app/blob/main/public/logo128.png?raw=true" alt="weather app"  width="20px" /> **You can visit this project by clicking [here](https://weather-app-react-udemy.herokuapp.com/)**
 
+---
+
+## Contents
+
+- [Technologies Used](#technologies-used)
+    - [Languages](#languages)
+    - [Libraries and APIs](#libraries-and-apis)
+    - [Tools Used](#tools-used)
+- [Deployment](#deployment)
+    - [Clone Project from GitHub](#clone-project-from-github)
+    - [Local Deployment](#local-deployment)
+    - [Deploy using Heroku](#deploy-using-heroku)
+- [Credits](#credits)
+    - [Code](#code)
+    - [Media](#media)
+    - [Acknowledgements](#acknowledgements)
+
+---
 ## Technologies Used
 ### Languages
 - HTML 5
@@ -24,7 +43,7 @@ This project is part of the exercises performed in my specialization course abou
 - [OpenWeather API](https://openweathermap.org/)
 
 
-### Tool Used
+### Tools Used
 - [VS Code](https://code.visualstudio.com/)
 - [Git](https://git-scm.com/)
 - [GitHub](https://github.com/)
@@ -94,6 +113,8 @@ I would like to thank the following people who encouraged me to continue special
 - My family and friends
 
 I also want to thank the engineer **[Emiliano Ocariz](https://github.com/correooke)**, for doing the specialization course about React and Redux, which was very practical when teaching and exposing everything, also part of the code used is of his authorship. 
+
+[**Back to top**](#weather-app)
 
 ---
 
